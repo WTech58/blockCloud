@@ -8,3 +8,7 @@ def index():
 @app.route("/dash")
 def dash():
   return render_template("dash.html")
+
+@app.route("/shop")
+def shop():
+  return render_template("shop.html")
