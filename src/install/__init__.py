@@ -27,3 +27,11 @@ def install_image(target):
       sleep(30)
       return "bcPro"
     return "bcPro"
+
+def install_mach(imageName):
+  if imageName == "bcBasic":
+    pass
+  elif imageName == "bcNormal":
+    pass
+  elif imageName == "bcPro":
+    pass
