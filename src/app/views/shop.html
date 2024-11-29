@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlockCloud 儲存頁面</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .hero {
+            background-color: #007bff;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+        .card {
+            margin: 20px 0;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero fade-in">
+        <h1>BlockCloud (區塊雲)</h1>
+        <p>提供安全、可靠的雲端儲存服務</p>
+    </div>
+
+    <div class="container fade-in">
+        <h2 class="text-center my-4">儲存方案</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">基礎方案</h5>
+                        <p class="card-text">5GB 儲存空間</p>
+                        <p class="card-text">每月僅需 $5</p>
+                        <a href="/start?target=basic" class="btn btn-primary">選擇方案</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">進階方案</h5>
+                        <p class="card-text">50GB 儲存空間</p>
+                        <p class="card-text">每月僅需 $15</p>
+                        <a href="/start?target=normal" class="btn btn-primary">選擇方案</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">專業方案</h5>
+                        <p class="card-text">200GB 儲存空間</p>
+                        <p class="card-text">每月僅需 $30</p>
+                        <a href="/start?target=pro" class="btn btn-primary">選擇方案</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text-center my-4">付款方式</h2>
+        <div class="text-center fade-in">
+            <p>我們支持以下付款方式：</p>
+            <ul class="list-inline">
+                <li class="list-inline-item">💳 wbank</li>
+                <li class="list-inline-item">💳 PayPal</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
