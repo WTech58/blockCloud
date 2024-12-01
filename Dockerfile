@@ -1,8 +1,8 @@
 FROM ubuntu:latest
 
-RUN apt update&&apt install python3.9 python3-pip
+RUN apt update&&apt install python3
 
-RUN pip3 install flask docker
+RUN pip install flask docker
 
 COPY src/app /app
 
