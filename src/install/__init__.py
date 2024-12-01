@@ -22,7 +22,7 @@ def install_image(target):
             client.images.build(path=".", tag=image_name)
             sleep(30)  # 考慮使用回調或事件來確認構建完成
         except Exception as e:
-            print(f"Error building image {image_name}: {e}")
+            print(f"不能建立映像 {image_name}: 錯誤： {e}")
             return None
     return image_name
 
