@@ -30,7 +30,9 @@ def install_image(target):
 
 def install_mach(imageName):
   if imageName == "bcBasic":
-    pass
+    if not client.contrainer.get(imageName):
+      client.contrainer.create(imageName,command="apt update&&mkdir files")
+    return client.contrainer.get(imageName)
   elif imageName == "bcNormal":
     pass
   elif imageName == "bcPro":
