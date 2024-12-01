@@ -1,39 +1,47 @@
 from ..app import client
 from time import sleep
 
-def images_exists(imageName):
-  images = client.images.list()
-  for image in images:
-    if imageName in image.tags:
-      return True
-  return False
+def images_exists(image_name):
+    images = client.images.list()
+    for image in images:
+        if image_name in image.tags:
+            return True
+    return False
 
 def install_image(target):
-  if target == "basic":
-    if not images_exists("bcBasic"):
-      client.images.build(path=".", tag="bcBasic")
-      sleep(30)
-      return "bcBasic"
-    return "bcBasic"
-  elif target == "normal":
-    if not images_exists("bcNormal"):
-      client.images.build(path=".", tag="bcNormal")
-      sleep(30)
-      return "bcNormal"
-    return "bcNormal"
-  elif target == "pro":
-    if not images_exists("bcPro"):
-      client.images.build(path=".", tag="bcPro")
-      sleep(30)
-      return "bcPro"
-    return "bcPro"
+    image_tags = {
+        "basic": "bcBasic",
+        "normal": "bcNormal",
+        "pro": "bcPro"
+    }
+    
+    image_name = image_tags.get(target)
+    
+    if image_name and not images_exists(image_name):
+        try:
+            client.images.build(path=".", tag=image_name)
+            sleep(30)  # 考慮使用回調或事件來確認構建完成
+        except Exception as e:
+            print(f"Error building image {image_name}: {e}")
+            return None
+    return image_name
 
-def install_mach(imageName):
-  if imageName == "bcBasic":
-    if not client.contrainer.get(imageName):
-      client.contrainer.create(imageName,command="apt update&&mkdir files")
-    return client.contrainer.get(imageName)
-  elif imageName == "bcNormal":
-    pass
-  elif imageName == "bcPro":
-    pass
+def install_mach(image_name):
+    try:
+        container = client.containers.get(image_name)
+    except Exception:
+        container = None
+
+    if image_name == "bcBasic":
+        if not container:
+            container = client.containers.create(image_name, command="apt update && mkdir files")
+        return container
+    elif image_name == "bcNormal":
+        if not container:
+            container = client.containers.create(image_name, command="apt update && mkdir files")
+        return container
+    elif image_name == "bcPro":
+        if not container:
+            container = client.containers.create(image_name, command="apt update && mkdir files")
+        return container
+    return None
