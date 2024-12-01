@@ -45,3 +45,5 @@ def install_mach(image_name):
             container = client.containers.create(image_name, command="apt update && mkdir files")
         return container
     return None
+
+__all__ = ["install_image","install_mach"]
