@@ -1,7 +1,11 @@
 FROM ubuntu:latest
 
-RUN apt update&&apt install python3.9
+RUN apt update&&apt install python3.9 python3-pip
 
-RUN pip install flask docker
+RUN pip3 install flask docker
 
-RUN cd src/app&&python router.py
+COPY src/app /app
+
+WORKDIR /app
+
+RUN python router.py
