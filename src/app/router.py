@@ -23,3 +23,5 @@ def start_mach():
     image = install_image(target)
     vm = install_mach(image)
     return render_template("dash.html",image=image,vm=vm)
+
+app.run(host="0.0.0.0",port=5000)
