@@ -1,14 +1,13 @@
 from hashlib import sha256
-from base64 import b64encode,b64decode
+from .block import Block
 
 class BlockSave:
-  def __init__(self,imageData:str=None):
-    self.imageData = imageData
-    self.imageTitle = ""
-    self.bimage = ""
-    if self.imageData != None or self.imageData != "":
-      self.bimage = b64encode(self.imageData.encode())
-  def _upload(self,image:str=None):
-    pass
-  def _get(self,imageText):
-    pass
+  def __init__(self,textData:str):
+    self.textData = textData
+  def _upload(self,id):
+    return Block(id,self.textData).addChain()
+  def _get(self,id):
+    return Block(id,self.textData).getBlock(id)
+
+
+__all__ = ["BlockSave"]
