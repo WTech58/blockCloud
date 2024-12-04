@@ -1,7 +1,11 @@
-from . import client,app
+from . import app
 from .. import BlockSave
-from flask import render_template,request.abort
+from flask import render_template,request,abort,session
 from hashlib import sha256
+import os
+
+app.config['SECRET_KEY'] = os.urandom(24)
+session["blocksave"] = []
 
 @app.route("/")
 def index():
@@ -9,7 +13,8 @@ def index():
 
 @app.route("/dash")
 def dash():
-  return render_template("dash.html")
+  bs = session["blocksave"]
+  return render_template("dash.html",bs=bs)
 
 @app.route("/upload",methods=["GET","POST"])
 def upload():
@@ -18,11 +23,12 @@ def upload():
   elif request.method == "POST":
     blockID = request.form.get("blockID")
     data = request.form.get("data")
-    prevHash = request.form.get("relaHash")
     if not prevHash:
-      pass
+      proof,blockhash = BlockSave(data)._upload(blockID)
+      session["blocksave"].append({"blockID":blockID,"proof":proof,"rawData":data,"blockhash":blockhash})
+      return redirect("/dash")
     else:
-      pass
+      return redirect("/dash")
   else:
     return abort(502)
 
