@@ -1,8 +1,9 @@
-from app import app
 from .. import BlockSave
 from flask import render_template,request,abort,session
 from hashlib import sha256
 import os
+
+app = Flask(__name__, template_folder="views")
 
 app.config['SECRET_KEY'] = os.urandom(24)
 session["blocksave"] = []
