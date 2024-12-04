@@ -1,5 +1,3 @@
-from flask import Flask
-
-app = Flask(__name__, template_folder="views")
+from .router import app
 
 __all__ = ["app"]
