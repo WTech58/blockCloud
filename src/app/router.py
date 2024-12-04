@@ -6,7 +6,10 @@ import os
 app = Flask(__name__, template_folder="views")
 
 app.config['SECRET_KEY'] = os.urandom(24)
-session["blocksave"] = []
+@app.before_request
+def initialize_session():
+    if "blocksave" not in session:
+        session["blocksave"] = []
 
 @app.route("/")
 def index():
