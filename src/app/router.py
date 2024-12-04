@@ -38,5 +38,3 @@ def upload():
 def delete_block():
   session["blocksave"].clear()
   return "ok!."
-
-app.run(host="0.0.0.0",port=5000)
