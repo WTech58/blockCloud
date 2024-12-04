@@ -11,10 +11,10 @@ class Block:
   def addChain(self) -> tuple:
     if not self.prevData:
       #blockChain format: (blockID)--data-timeNows-prevData
-      self.proof = f"{self.blockID}--{data}--{datatime.datetime.now()}"
+      self.proof = f"{self.blockID}--{self.data}--{datatime.datetime.now()}"
       self.hashblock = sha256(self.proof.encode()).hexdigest()
     else:
-      self.proof = f"{self.blockID}--{data}--{datatime.datetime.now()}-{self.prevData}"
+      self.proof = f"{self.blockID}--{self.data}--{datatime.datetime.now()}-{self.prevData}"
       self.hashblock = sha256(self.proof.encode()).hexdigest()
     return self.proof,self.hashblock
   def getBlock(self,id):
