@@ -1,3 +1,4 @@
+from app import app
 from blockchain import BlockSave
 from flask import render_template,request,abort,session
 from hashlib import sha256
