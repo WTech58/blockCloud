@@ -35,7 +35,7 @@ def upload():
 
 @app.route("/delete")
 def delete_block():
-  session["blocksave"].clear()
+  session.pop("blocksave",[])
   return "ok!."
 
 @app.route("/get/chain")
