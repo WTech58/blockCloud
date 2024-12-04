@@ -9,7 +9,7 @@ class Block:
     self.proof = None
     self.hashblock = None
   def addChain(self) -> tuple:
-    if self.blockID == 1:
+    if self.prevData == 1:
       #blockChain format: (blockID)--data-timeNows-prevData
       self.proof = f"{self.blockID}--{data}--{datatime.datetime.now()}"
       self.hashblock = sha256(self.proof.encode()).hexdigest()
