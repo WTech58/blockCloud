@@ -27,12 +27,9 @@ def upload():
   elif request.method == "POST":
     blockID = request.form.get("blockID")
     data = request.form.get("data")
-    if not prevHash:
-      proof,blockhash = BlockSave(data)._upload(blockID)
-      session["blocksave"].append({"blockID":blockID,"proof":proof,"rawData":data,"blockhash":blockhash})
-      return redirect("/dash")
-    else:
-      return redirect("/dash")
+    proof,blockhash = BlockSave(data)._upload(blockID)
+    session["blocksave"].append({"blockID":blockID,"proof":proof,"rawData":data,"blockhash":blockhash})
+    return redirect("/dash")
   else:
     return abort(502)
 
