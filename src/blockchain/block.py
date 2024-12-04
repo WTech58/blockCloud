@@ -16,7 +16,7 @@ class Block:
     else:
       self.proof = f"{self.blockID}--{data}--{datatime.datetime.now()}-{self.prevData}"
       self.hashblock = sha256(self.proof.encode()).hexdigest()
-   return self.proof,self.hashblock
+    return self.proof,self.hashblock
   def getBlock(self,id):
     if self.blockID == id:
       return self
