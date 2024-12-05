@@ -17,7 +17,7 @@ def index():
 
 @app.route("/dash")
 def dash():
-  bs = session["blocksave"]
+  bs = session.get("blocksave")
   return render_template("dash.html",bs=bs)
 
 @app.route("/upload",methods=["GET","POST"])
