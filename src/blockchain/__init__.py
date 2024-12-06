@@ -7,7 +7,7 @@ class BlockSave:
   def _upload(self,id):
     return Block(id,self.textData).addChain()
   def _get(self,id):
-    return Block(id,self.textData).getBlock(id)
+    return Block.getBlock(id)
   def _clear_all(self):
     return Block._clear()
   def get_all(self):
