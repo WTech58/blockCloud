@@ -49,7 +49,7 @@ class Block:
                 with open("bc.json", "w") as fp:
                     json.dump([block_data], fp, indent=4)
   @staticmethod
-  def getBlock(self,id):
+  def getBlock(id):
     if not os.path.exists("bc.json"):
       f = open("bc.json","x")
       f.close()
