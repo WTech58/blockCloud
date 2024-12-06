@@ -10,5 +10,7 @@ class BlockSave:
     return Block(id,self.textData).getBlock(id)
   def _clear_all(self):
     return Block._clear()
+  def get_all(self):
+    return Block.get_all()
 
 __all__ = ["BlockSave"]
