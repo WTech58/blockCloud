@@ -26,7 +26,6 @@
                         <div class="card block-card">
                             <div class="card-body">
                                 <h5 class="card-title">鑰匙 (Key): {{ block.blockID }}</h5>
-                                <p class="card-text">明文資料: {{ block.rawData }}</p>
                                 <p class="card-text">哈希值: {{ block.blockhash }}</p>
                                 <button class="btn btn-info" data-toggle="modal" data-target="#viewModal{{ block.blockID }}">查看詳細資訊</button>
                             </div>
@@ -45,7 +44,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <p><strong>明文資料:</strong> {{ block.rawData }}</p>
-                                    <p><strong>哈希值:</strong> {{ block.blockhash }}</p>
+                                    <p><strong>哈希值:</strong> {{ block.hash }}</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
