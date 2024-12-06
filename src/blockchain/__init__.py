@@ -7,7 +7,11 @@ class BlockSave:
   def _upload(self,id):
     return Block(id,self.textData).addChain()
   def _get(self,id):
-    return Block.getBlock(id)
+    result = Block.getBlock(id)
+    if result != None:
+      return result
+    else:
+      return "找不到該Locker"
   def _clear_all(self):
     return Block._clear()
   def get_all(self):
