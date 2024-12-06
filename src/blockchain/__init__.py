@@ -8,6 +8,7 @@ class BlockSave:
     return Block(id,self.textData).addChain()
   def _get(self,id):
     return Block(id,self.textData).getBlock(id)
-
+  def _clear_all(self):
+    return Block._clear()
 
 __all__ = ["BlockSave"]
