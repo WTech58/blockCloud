@@ -76,7 +76,7 @@ class Block:
       except json.JSONDecodeError:
         return "JSON 解碼錯誤，無法讀取區塊數據。"
   @staticmethod
-  def _clear(self):
+  def _clear():
     # 清空 bc.json 文件內容
     if os.path.exists("bc.json"):
       with open("bc.json", "w") as fp:
