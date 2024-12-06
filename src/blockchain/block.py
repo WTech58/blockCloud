@@ -62,6 +62,18 @@ class Block:
         return None
     return None
   @staticmethod
+  def get_all():
+    if not os.path.exists("bc.json"):
+      return None 
+    with open("bc.json", "r") as fp:
+      try:
+        data = json.load(fp)  # 讀取JSON數據
+        return data
+      except json.JSONDecodeError:
+        print("JSON 解碼錯誤，無法讀取區塊數據。")
+        return None
+    return None
+  @staticmethod
   def _clear(self):
     # 清空 bc.json 文件內容
     if os.path.exists("bc.json"):
