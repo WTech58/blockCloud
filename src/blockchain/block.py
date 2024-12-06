@@ -70,9 +70,7 @@ class Block:
         data = json.load(fp)  # 讀取JSON數據
         return data
       except json.JSONDecodeError:
-        print("JSON 解碼錯誤，無法讀取區塊數據。")
-        return None
-    return None
+        return "JSON 解碼錯誤，無法讀取區塊數據。"
   @staticmethod
   def _clear(self):
     # 清空 bc.json 文件內容
