@@ -61,8 +61,7 @@ class Block:
           if block["blockID"] == id:  # 根據ID查詢
             return block  # 返回查詢到的區塊字典
       except json.JSONDecodeError:
-        print("JSON 解碼錯誤，無法讀取區塊數據。")
-        return None
+        return "JSON 解碼錯誤，無法讀取區塊數據。"
     return None
   @staticmethod
   def get_all():
