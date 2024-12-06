@@ -13,6 +13,7 @@ class Block:
       #blockChain format: (blockID)--data-timeNows-prevData
       self.proof = f"{self.blockID}--{self.data}--{datetime.datetime.now()}"
       self.hashblock = sha256(self.proof.encode()).hexdigest()
+      self.save_to_json()
     else:
       self.proof = f"{self.blockID}--{self.data}--{datetime.datetime.now()}-{self.prevData}"
       self.hashblock = sha256(self.proof.encode()).hexdigest()
