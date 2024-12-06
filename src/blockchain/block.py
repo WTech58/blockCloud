@@ -50,7 +50,9 @@ class Block:
   @staticmethod
   def getBlock(self,id):
     if not os.path.exists("bc.json"):
-      return None 
+      f = open("bc.json","x")
+      f.close()
+      return "已建立"
     with open("bc.json", "r") as fp:
       try:
         data = json.load(fp)  # 讀取JSON數據
@@ -64,7 +66,9 @@ class Block:
   @staticmethod
   def get_all():
     if not os.path.exists("bc.json"):
-      return None 
+      f = open("bc.json","x")
+      f.close()
+      return "已建立"
     with open("bc.json", "r") as fp:
       try:
         data = json.load(fp)  # 讀取JSON數據
