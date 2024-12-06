@@ -13,7 +13,7 @@ def index():
 
 @app.route("/dash")
 def dash():
-  bs = session.get("blocksave")
+  bs = BlockSave("test").get_all()
   return render_template("dash.html",bs=bs)
 
 @app.route("/upload",methods=["GET","POST"])
@@ -24,16 +24,15 @@ def upload():
     blockID = request.form.get("blockID")
     data = request.form.get("data")
     proof,blockhash = BlockSave(data)._upload(blockID)
-    session["blocksave"].append({"blockID":blockID,"proof":proof,"rawData":data,"blockhash":blockhash})
     return redirect("/dash")
   else:
     return abort(502)
 
 @app.route("/delete")
 def delete_block():
-  session.pop("blocksave",[])
+  BlockSave("test")._clear_all()
   return "ok!."
 
 @app.route("/get/chain")
 def get_chain():
-  return session["blocksave"]
+  return BlockSave("test").get_all()
