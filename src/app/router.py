@@ -36,3 +36,9 @@ def delete_block():
 @app.route("/get/chain")
 def get_chain():
   return BlockSave("test").get_all()
+
+@app.route("/get/chain/<id>")
+def get_chain_with_id_block(id):
+  if not id:
+    return "找不到鑰匙"
+  return BlockSave("test")._get(id)
