@@ -2,7 +2,6 @@
 
 cd "$(dirname "$0")"
 
-# 处理命令
 case "$1" in
     init)
         make init
@@ -26,10 +25,54 @@ case "$1" in
             esac
         done
         echo "建立區塊: $key 及其值: $data"
-        curl -s -X POST https://bc.wtechhk.xyz/upload -d '{"blockID": "'"$key"'", "data": "'"$data"'"}') 
+        curl -s -X POST https://bc.wtechhk.xyz/upload -d '{"blockID": "'"$key"'", "data": "'"$data"'"}'
+        ;;
+    getchain)
+        shift
+        type="all"
+        key=""
+
+        while [[ "$#" -gt 0 ]]; do
+            case "$1" in
+                -t)
+                    type="$2"
+                    shift 2
+                    ;;
+                -k)
+                    key="$2"
+                    shift 2
+                    ;;
+                *)
+                    echo "不明參數: $1"
+                    exit 1
+                    ;;
+            esac
+        done
+
+        echo "獲取區塊鏈資料，類型: $type"
+
+        # 构造请求参数
+        if [[ "$type" == "all" ]]; then
+            url="https://bc.wtechhk.xyz/get/chain"
+        else
+            if [[ -n "$key" ]]; then
+                url="https://bc.wtechhk.xyz/get/chain/$key"
+            else
+                echo "請提供有效的 key"
+                exit 1
+            fi
+        fi
+
+        response=$(curl -s -X GET "$url")
+        
+        if [[ "$response" == *"找不到該Locker"* ]]; then
+            echo "錯誤: 找不到該Locker"
+        else
+            echo "區塊鏈回應: $response"
+        fi
         ;;
     *)
-        echo "Usage: $0 {init|addchain}"
+        echo "使用方法: $0 {init|addchain|getchain}"
         exit 1
         ;;
 esac
