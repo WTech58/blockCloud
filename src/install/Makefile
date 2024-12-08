@@ -1,4 +1,4 @@
-APP_DIR = src/app
+APP_DIR = ../app
 JSON_FILE = $(APP_DIR)/bc.json
 REQUIRED_PACKAGES = flask
 
