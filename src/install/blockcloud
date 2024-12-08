@@ -25,7 +25,7 @@ case "$1" in
             esac
         done
         echo "建立區塊: $key 及其值: $data"
-        curl -s -X POST https://bc.wtechhk.xyz/upload -d '{"blockID": "'"$key"'", "data": "'"$data"'"}'
+        curl -s -X POST https://bc.wtechhk.xyz/upload -f '{"blockID": "'"$key"'", "data": "'"$data"'"}'
         ;;
     getchain)
         shift
