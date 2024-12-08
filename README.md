@@ -6,9 +6,10 @@ blockcloud-CLI支持命令式上傳至主網
 ``` bash
   winget install --id Git.Git -e --source winget
 ```
+
 下載及安裝後，開始初始化及設置
 ``` bash
-  cd blockCloud/src/install && chmod +x ./blockcloud && ./blockcloud init
+  git clone https://github.com/WTech58/blockCloud.git && cd blockCloud/src/install && chmod +x ./blockcloud && ./blockcloud init
 ```
 如果成功的話，恭喜你已經完成設置。以下為blockcloud-cli指令
 確認工作目錄
