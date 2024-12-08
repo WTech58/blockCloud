@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# 切换到 install 目录
 cd "$(dirname "$0")"
 
 # 处理命令
@@ -9,7 +8,7 @@ case "$1" in
         make init
         ;;
     addchain)
-        shift  # 移除第一个参数
+        shift
         while [[ "$#" -gt 0 ]]; do
             case "$1" in
                 -k)
@@ -21,15 +20,13 @@ case "$1" in
                     shift 2
                     ;;
                 *)
-                    echo "Unknown parameter passed: $1"
+                    echo "不明參數: $1"
                     exit 1
                     ;;
             esac
         done
-        # 这里可以调用 Python 脚本或其他逻辑来处理添加区块链
-        echo "Adding chain with key: $key and data: $data"
-        # 你可以在这里调用 Python 脚本，比如：
-        # python3 ../blockchain/add_chain.py -k "$key" -d "$data"
+        echo "建立區塊: $key 及其值: $data"
+        curl -s -X POST https://bc.wtechhk.xyz/upload -d '{"blockID": "'"$key"'", "data": "'"$data"'"}') 
         ;;
     *)
         echo "Usage: $0 {init|addchain}"
