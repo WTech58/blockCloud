@@ -23,7 +23,7 @@ def upload():
   elif request.method == "POST":
     blockID = request.form.get("blockID")
     data = request.form.get("data")
-    proof,blockhash = BlockSave(data)._upload(blockID)
+    proof,id,blockhash = BlockSave(data)._upload(blockID)
     return redirect("/dash")
   else:
     return abort(502)
