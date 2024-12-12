@@ -20,7 +20,7 @@ class Block:
       self.proof = f"{self.blockID}--{self.data}--{self.now_utc_plus_8.strftime('%Y/%m/%d, %H:%M:%S')}-{self.prevData}"
       self.hashblock = sha256(self.proof.encode()).hexdigest()
       self.save_to_json()
-    return self.proof,self.hashblock
+    return self.proof,self.blockID,self.hashblock
   def save_to_json(self):
         # 構建區塊數據字典
         block_data = {
