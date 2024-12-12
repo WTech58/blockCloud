@@ -8,14 +8,16 @@ class Block:
     self.prevData = prevData
     self.proof = None
     self.hashblock = None
+    self.now_utc = datetime.datetime.utcnow()
+    self.now_utc_plus_8 = self.now_utc + datetime.timedelta(hours=8)
   def addChain(self) -> tuple:
     if not self.prevData:
       #blockChain format: (blockID)--data-timeNows-prevData
-      self.proof = f"{self.blockID}--{self.data}--{datetime.datetime.now()}"
+      self.proof = f"{self.blockID}--{self.data}--{self.now_utc_plus_8.strftime('%Y/%m/%d, %H:%M:%S')}"
       self.hashblock = sha256(self.proof.encode()).hexdigest()
       self.save_to_json()
     else:
-      self.proof = f"{self.blockID}--{self.data}--{datetime.datetime.now()}-{self.prevData}"
+      self.proof = f"{self.blockID}--{self.data}--{self.now_utc_plus_8.strftime('%Y/%m/%d, %H:%M:%S')}-{self.prevData}"
       self.hashblock = sha256(self.proof.encode()).hexdigest()
       self.save_to_json()
     return self.proof,self.hashblock
