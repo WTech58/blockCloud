@@ -42,3 +42,12 @@ def get_chain_with_id_block(id):
   if not id:
     return "找不到鑰匙"
   return BlockSave("test")._get(id)
+
+@app.route("/get/chain/latest")
+def get_latest_of_block():
+  chain = BlockSave("test").get_all()
+  for block in chain:
+    block['time'] = datetime.strptime(block['rawData'].split('--')[-1], '%Y/%m/%d, %H:%M:%S')
+  latest_block = max(blocks, key=lambda x: x['time'])
+  return jsonify(latest_block)
+    
