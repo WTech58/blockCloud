@@ -56,4 +56,7 @@ def get_block_for_hash():
   code = request.args.get("code")
   if not code:
     return jsonify(error=True)
-  return BlockSave.get_with_hash(code)
+  statement = BlockSave.get_with_hash(code)
+  if statement is None:
+    return jsonify(error=True,notfound=True,youwilldied=True)
+  return statement
