@@ -51,3 +51,9 @@ def get_latest_of_block():
   latest_block = max(chain, key=lambda x: x['time'])
   return jsonify(latest_block)
     
+@app.route("/get/chain/hash")
+def get_block_for_hash():
+  code = request.args.get("code")
+  if not code:
+    return jsonify(error=True)
+  return BlockSave.get_with_hash(code)
