@@ -86,3 +86,18 @@ class Block:
         return "bc.json 的內容已成功清空。"
     else:
       return "bc.json 文件不存在。"
+  @staticmethod
+  def _get_with_hash(hash):
+    if not os.path.exists("bc.json"):
+      f = open("bc.json","x")
+      f.close()
+      return "已建立"
+    with open("bc.json", "r") as fp:
+      try:
+        data = json.load(fp)  # 讀取JSON數據
+        for block in data:
+          if block["hash"] == hash:  # 根據HashCode查詢
+            return block  # 返回查詢到的區塊字典
+      except json.JSONDecodeError:
+        return "JSON 解碼錯誤，無法讀取區塊數據。"
+    return None
