@@ -16,5 +16,8 @@ class BlockSave:
     return Block._clear()
   def get_all(self):
     return Block.get_all()
+  @staticmethod
+  def get_with_hash(hash):
+    return Block._get_with_hash(hash)
 
 __all__ = ["BlockSave"]
