@@ -28,7 +28,7 @@ def auth_login():
     if users == []:
       return "不要玩了，都沒有東西的"
     for user in users:
-      ncode = f"bc-{user["username"]}"
+      ncode = f"bc-{user['username']}"
       scode = sha256(ncode.encode('utf-8')).hexdigest()
       if code == scode:
         session["user"] = str(user["username"])
