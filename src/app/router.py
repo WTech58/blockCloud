@@ -24,7 +24,7 @@ def auth_login():
   if request.method == "GET":
     return render_template("login.html")
   else:
-    code = str(request.form.get("auth-code"))
+    code = str(request.form.get("auth_code"))
     if users == []:
       return "不要玩了，都沒有東西的"
     for user in users:
