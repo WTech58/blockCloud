@@ -57,7 +57,7 @@ def create_auth_code():
       rawData = str(block["rawData"]).split("--")[1]
       if token == rawData:
         users.append({"username":user})
-        return "已建立"
+        return {"apiKey":sha256(f"bc-{user}".encode("utf-8")).hexdigest()}
   return "不行"
 
 @app.route("/upload",methods=["GET","POST"])
