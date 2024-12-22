@@ -8,7 +8,8 @@ app = Flask(__name__, template_folder="views")
 app.config['SECRET_KEY'] = os.urandom(24)
 
 users = []
-session["user"] = None
+with app.app_context():
+    session['user'] = ""
 
 @app.route("/")
 def index():
