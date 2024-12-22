@@ -8,11 +8,10 @@ app = Flask(__name__, template_folder="views")
 app.config['SECRET_KEY'] = os.urandom(24)
 
 users = []
-with app.app_context():
-    session['user'] = ""
 
 @app.route("/")
 def index():
+  session['user'] = ""
   return render_template("index.html")
 
 @app.route("/logout")
