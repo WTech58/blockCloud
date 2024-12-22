@@ -11,7 +11,8 @@ users = []
 
 @app.route("/")
 def index():
-  session['user'] = ""
+  if not session.get('user'):
+    session['user'] = ""
   return render_template("index.html")
 
 @app.route("/logout")
