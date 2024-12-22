@@ -68,7 +68,7 @@ def upload():
     blockID = request.form.get("blockID")
     data = request.form.get("data")
     proof,id,blockhash = BlockSave(data)._upload(blockID)
-    return redirect("/dash")
+    return {"status":True}
   else:
     return abort(502)
 
