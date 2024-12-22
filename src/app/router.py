@@ -7,14 +7,58 @@ app = Flask(__name__, template_folder="views")
 
 app.config['SECRET_KEY'] = os.urandom(24)
 
+users = []
+session["user"] = None
+
 @app.route("/")
 def index():
   return render_template("index.html")
 
+@app.route("/logout")
+def auth_logout():
+  session["user"] = None
+  return redirect("/auth/login")
+
+@app.route("/auth/login",methods=["GET","POST"])
+def auth_login():
+  if request.method == "GET":
+    return render_template("login.html")
+  else:
+    code = str(request.form.get("auth-code"))
+    if users == []:
+      return "不要玩了，都沒有東西的"
+    for user in users:
+      ncode = f"bc-{user["username"]}"
+      scode = sha256(ncode.encode('utf-8')).hexdigest()
+      if code == scode:
+        session["user"] = str(user["username"])
+        return redirect("/dash")
+    return redirect("/auth/login")
+
 @app.route("/dash")
 def dash():
+  u = session["user"]
+  if u is None or u == "":
+    return redirect("/")
   bs = BlockSave("test").get_all()
-  return render_template("dash.html",bs=bs)
+  return render_template("dash.html",bs=bs,u=u)
+
+@app.route("/create/auth/code")
+def create_auth_code():
+  user = str(request.args.get("user"))
+  token = str(request.args.get("apikey"))
+  if not user:
+    return "找不到東西"
+  if not token:
+    return "你不能建立"
+  bs = BlockSave("test").get_all()
+  for block in bs:
+    if str(block["blockID"]).startswith("119"):
+      rawData = str(block["rawData"]).split("--")[1]
+      if token == rawData:
+        users.append({"username":user})
+        return "已建立"
+  return "不行"
 
 @app.route("/upload",methods=["GET","POST"])
 def upload():
