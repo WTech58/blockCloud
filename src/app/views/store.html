@@ -108,6 +108,7 @@
     
     if (!response.ok) {
         alert('API 請求失敗');
+        return null;
     }
 
     const resp = await response.json();
@@ -123,11 +124,11 @@
             const reviewer = rawData[2]; // 收款人
             const amount = rawData[3]; // 金額
             const times = rawData[4]; // 時間
-
+            
             // 轉換時間格式
             const ftimes = new Date(times.replace(/(\d{4})\/(\d{2})\/(\d{2}), (\d{2}):(\d{2}):(\d{2})/, '$1-$2-$3T$4:$5:$6'));
 
-            console.log(`ftimes: ${ftimes}, timesSeconds: ${timesSeconds}`); // 打印時間
+            alert(`ftimes: ${ftimes}, timesSeconds: ${timesSeconds}, username: ${username}, amount: ${amount}`); // 打印時間
 
             // 檢查條件：時間、收款人和金額
             if (ftimes >= timesSeconds && reviewer === "Ben" && amount === "5000") {
