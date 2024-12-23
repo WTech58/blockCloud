@@ -108,7 +108,7 @@
         const resp = await response.json();
         
         const utc8Time = new Date(Date.now() + 8 * 60 * 60 * 1000);
-        const timesSeconds = new Date(utc8Time.getTime() - 3000); // 減去 3 秒
+        const timesSeconds = new Date(utc8Time.getTime() - 20000); // 減去 20 秒
 
         for (const res of resp) {
             const rawData = res.rawData.split("--");
