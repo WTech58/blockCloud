@@ -162,7 +162,7 @@
                         $('#loadingMessage').hide();
                         $('#step3').removeClass('active').hide();
                         $('#step4').show().addClass('active');
-                        $('#finalApiKey').text(finalApiKey); // 顯示返回的授權碼
+                        $('#apiKey').text(finalApiKey); // 顯示返回的授權碼
                         $('#successMessage').show();
                     } else {
                         throw new Error('上傳資料失敗');
