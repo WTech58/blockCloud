@@ -44,6 +44,10 @@ def dash():
   bs = BlockSave("test").get_all()
   return render_template("dash.html",bs=bs,u=u)
 
+@app.route("/store")
+def go_store():
+  return render_template("store.html")
+
 @app.route("/create/auth/code")
 def create_auth_code():
   user = str(request.args.get("user"))
