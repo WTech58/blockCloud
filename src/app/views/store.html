@@ -120,7 +120,7 @@
                 const times = rawData[2];
                 const ftimes = new Date(times.replace(/(\d{4})\/(\d{2})\/(\d{2}), (\d{2}):(\d{2}):(\d{2})/, '$1-$2-$3T$4:$5:$6'));
 
-                if (ftimes >= timesSeconds && reviewer === "wbank") {
+                if (ftimes >= timesSeconds && reviewer == "Ben" && amount == "500") {
                     return { username, amount }; // 返回用戶名和金額
                 }
             }
