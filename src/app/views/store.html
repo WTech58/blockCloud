@@ -107,7 +107,7 @@
     const response = await fetch(url);
     
     if (!response.ok) {
-        throw new Error('API 請求失敗');
+        alert('API 請求失敗');
     }
 
     const resp = await response.json();
