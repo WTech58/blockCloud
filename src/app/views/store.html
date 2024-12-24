@@ -136,7 +136,11 @@
                     if (reviewer === recv && amount === avalue) {
                         const blockId = rd.blockID;
                         validBlocks.push(blockId);
+                    } else {
+                        return null;
                     }
+                } else {
+                    return null;
                 }
             }
         });
