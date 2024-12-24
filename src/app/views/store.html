@@ -132,7 +132,7 @@
                 const utcOffset = 8 * 60 * 60 * 1000; // 8小時的毫秒數
                 const adjustedTime = new Date(parsedTime.getTime() + utcOffset);
 
-                if (adjustedTime >= oneMinAgo) {
+                if (adjustedTime >= oneMinAgo && adjustedTime <= nowTimes) {
                     if (reviewer === recv && amount === avalue) {
                         const blockId = rd.blockID;
                         validBlocks.push(blockId);
