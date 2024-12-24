@@ -150,6 +150,7 @@
             return { uname,avalue };
             console.log("Valid payment found in block(s):", validBlocks);
         } else {
+            return null;
             console.log("No valid payment found.");
         }
 
@@ -189,12 +190,12 @@
         $('#checkPayment').click(async function() {
             $('.loading').show();
             const paymentInfo = await checkPayment("Ben","50");
-            $('.loading').hide();
-
             if (paymentInfo) {
+                $('.loading').hide();
                 $('#step2').removeClass('active').hide();
                 $('#step3').show().addClass('active');
             } else {
+                $('.loading').hide();
                 alert('付款確認失敗，請重試。');
             }
         });
