@@ -112,6 +112,7 @@
         const nowTimes = new Date();
         const oneMinAgo = new Date(nowTimes.getTime() - 1 * 60 * 1000);
         const validBlocks = [];
+        let uname = null;
 
         rawDatas.forEach(rd => {
             const rawData = rd.rawData.split('--');
@@ -119,7 +120,7 @@
                 const recv = rawData[1].split('->')[1];
                 const avalue = rawData[1].split('->')[2];
                 const time = rawData[2];
-                const uname = rawData[1].split('->')[0];
+                uname = rawData[1].split('->')[0];
                 
                 // 使用正則表達式將時間字符串轉換為 ISO 格式
                 const parsedTime = new Date(time.replace(/(\d{4})\/(\d{1,2})\/(\d{1,2}), (\d{1,2}:\d{1,2}:\d{1,2})/, '$1-$2-$3T$4'));
