@@ -128,15 +128,10 @@
                     const amount = tradeData[2];
                     const times = rawData[2];
                     const ftimes = new Date(times.replace(/(\d{4})\/(\d{2})\/(\d{2}), (\d{2}):(\d{2}):(\d{2})/, '$1-$2-$3T$4:$5:$6'));
-
-                    if (ftimes >= timesSeconds) {
-                        if (reviewer === "Ben" && amount === "50") {
-                            return { username, amount };
-                        } else {
-                           console.log(username + " " + amount);
-                        }
+                    if (ftimes >= timesSeconds && reviewer === "Ben" && amount === "50") {
+                       return { username, amount };
                     } else {
-                       console.log(username + " " + amount);
+                       console.log("未滿足條件 " + username + " amount=" + amount);
                     }
                 }
             }
@@ -147,7 +142,7 @@
             console.error('錯誤:', error);
         }
     }
-       
+        console.log(username+amount);
         return null;
 }
 
@@ -187,7 +182,7 @@
                 $('#step2').removeClass('active').hide();
                 $('#step3').show().addClass('active');
             } else {
-                alert('付款確認失敗，請重試。'+paymentInfo);
+                alert('付款確認失敗，請重試。');
             }
         });
 
