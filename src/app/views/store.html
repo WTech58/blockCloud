@@ -113,13 +113,16 @@
         const oneMinAgo = new Date(nowTimes.getTime() - 1 * 60 * 1000);
         const validBlocks = [];
         let uname = null;
+        let recv = null;
+        let avalue = null;
+        let time = null;
 
         rawDatas.forEach(rd => {
             const rawData = rd.rawData.split('--');
             if (rawData[0].startsWith("127")) {
-                const recv = rawData[1].split('->')[1];
-                const avalue = rawData[1].split('->')[2];
-                const time = rawData[2];
+                recv = rawData[1].split('->')[1];
+                avalue = rawData[1].split('->')[2];
+                time = rawData[2];
                 uname = rawData[1].split('->')[0];
                 
                 // 使用正則表達式將時間字符串轉換為 ISO 格式
