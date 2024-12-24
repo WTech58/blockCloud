@@ -117,7 +117,7 @@
 
             const resp = await response.json();
             const utc8Time = new Date(Date.now() + 8 * 60 * 60 * 1000);
-            const timesSeconds = new Date(utc8Time.getTime() - 30000); // 減去 30 秒
+            const timesSeconds = new Date(utc8Time.getTime() - 60000); // 減去 60 秒
 
             for (const res of resp) {
                 const rawData = res.rawData.split("--");
@@ -128,10 +128,14 @@
                     const amount = tradeData[2];
                     const times = rawData[2];
                     const ftimes = new Date(times.replace(/(\d{4})\/(\d{2})\/(\d{2}), (\d{2}):(\d{2}):(\d{2})/, '$1-$2-$3T$4:$5:$6'));
-                    if (ftimes >= timesSeconds && reviewer === "Ben" && amount === "50") {
-                       return { username, amount };
+                    if (ftimes >= timesSeconds) {
+                       if (reviewer === "Ben" && amount === "50") {
+                          return { username, amount };
+                       } else {
+                          console.log("未滿足條件 " + username + " amount=" + amount);
+                       }
                     } else {
-                       console.log("未滿足條件 " + username + " amount=" + amount);
+                       console.log("請確保在1分鐘內完成付款 " + username + " amount=" + amount);
                     }
                 }
             }
@@ -142,7 +146,7 @@
             console.error('錯誤:', error);
         }
     }
-        console.log(username+amount);
+        console.log("付款確認失敗");
         return null;
 }
 
