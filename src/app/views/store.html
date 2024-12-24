@@ -132,7 +132,11 @@
                     if (ftimes >= timesSeconds) {
                         if (reviewer === "Ben" && amount === "50") {
                             return { username, amount };
+                        } else {
+                           console.log(username + " " + amount);
                         }
+                    } else {
+                       console.log(username + " " + amount);
                     }
                 }
             }
