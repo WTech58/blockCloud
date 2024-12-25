@@ -39,6 +39,8 @@ def auth_login():
 @app.route("/dash")
 def dash():
   u = session["user"]
+  if not u:
+    session["user"] = ""
   if u is None or u == "":
     return redirect("/")
   bs = BlockSave("test").get_all()
