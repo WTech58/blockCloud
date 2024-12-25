@@ -114,7 +114,8 @@
 
         async function processPayment() {
             const success = await contract.processPayment();
-            return { aname,reviewer,amount }
+            return { aname,reviewer,amount };
+        }
 
         function cancelPayment() {
             contract.hideModal();
