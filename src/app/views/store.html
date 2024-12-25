@@ -111,23 +111,13 @@
            return null;
         }
         const contract = Contract.init(aname, reviewer, amount);
-
-        async function processPayment() {
-            const success = await contract.processPayment();
-            return { aname,reviewer,amount };
-        }
-
-        function cancelPayment() {
-            contract.hideModal();
-            alert('訂單取消');
-        }
-
         // 顯示模態框
         contract.showModal();
         document.getElementById('authorizeButton').onclick = async function() {
-            const paymentInfo = await processPayment();
-            if (paymentInfo) {
+            const success = await contract.processPayment(); // 等待付款處理
+            if (success) {
                 alert('付款成功!');
+                return { aname,reviewer,amount };
             } else {
                 alert('付款失敗.');
             }
