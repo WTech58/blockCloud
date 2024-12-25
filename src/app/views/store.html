@@ -157,6 +157,9 @@
 
         $('#checkPayment').click(async function() {
             $('.loading').show();
+            await checkPayment("Ben","50");
+            $('.loading').hide();
+            /*
             const paymentInfo = await checkPayment("Ben","50");
             if (paymentInfo) {
                 $('.loading').hide();
@@ -166,6 +169,7 @@
                 $('.loading').hide();
                 alert('付款確認失敗，請重試。');
             }
+            */
         });
 
         $('#generateApiKey').click(async function() {
