@@ -64,7 +64,7 @@
     <div class="step" id="step2" style="display: none;">
         <h5>步驟 2: 付款</h5>
         <p>收款者：Ben</p>
-        <p>金額為WTC$50</p>
+        <p>金額為WTC$0</p>
         <p>請確認您已付款。</p>
         <button class="btn btn-success" id="checkPayment">確認付款</button>
         <div class="loading">
@@ -193,8 +193,8 @@
 
         $('#checkPayment').click(async function() {
             $('.loading').show();
-            const paymentInfo = await checkPayment("Ben","50");
-            if (paymentInfo) {
+            //const paymentInfo = await checkPayment("Ben","50");
+            if (true) {
                 $('.loading').hide();
                 $('#step2').removeClass('active').hide();
                 $('#step3').show().addClass('active');
