@@ -111,16 +111,38 @@
         }
         const contract = Contract.init(aname, reviewer, amount);
         contract.showModal(); // 顯示模態框
-
         const paymentResult = await contract.processPayment();
 
-        // 根據結果顯示提示
-        if (paymentResult) {
-            alert(`付款成功: ${paymentResult}`);
-            
-        } else {
-            alert('付款失敗.');
-        }
+        let paymentSuccessful = false;
+
+        // 設置授權按鈕的點擊事件
+        document.getElementById('authorizeButton').onclick = async () => {
+                const paymentResult = await contract.processPayment(); // 等待付款處理
+                if (paymentResult) {
+                    alert('付款成功!');
+                    paymentSuccessful = true;
+                    return paymentResult;
+                } else {
+                    alert('付款失敗.');
+                    return null;
+                }
+            }
+
+        // 設置取消按鈕的點擊事件
+        document.getElementById('cancelButton').onclick = () => {
+            contract.hideModal();
+            alert('交易取消.');
+            clearInterval(checkInterval); // 清除檢查間隔
+            return;
+        };
+
+        // 使用 setInterval 來檢查支付狀態
+        const checkInterval = setInterval(() => {
+            if (paymentSuccessful) {
+                contract.hideModal();
+                clearInterval(checkInterval); // 支付成功後清除檢查間隔
+            }
+        }, 1000); // 每秒檢查一次
     } catch (error) {
         console.error("Error fetching data:", error);
         return null;
