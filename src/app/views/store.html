@@ -111,7 +111,6 @@
         }
         const contract = Contract.init(aname, reviewer, amount);
         contract.showModal(); // 顯示模態框
-        const paymentResult = await contract.processPayment();
 
         let paymentSuccessful = false;
 
