@@ -53,7 +53,6 @@ def login_with_dc():
   return discord.create_session(scope=["identify"])
 
 @app.route("/auth/discord")
-@requires_authorization
 def login_discord_session():
   if not discord.authorized:
     return jsonify({"dc-status":False,"msg":"請登入discord"})
