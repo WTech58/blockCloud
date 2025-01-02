@@ -6,6 +6,7 @@ import os,datetime
 
 app = Flask(__name__, template_folder="views")
 
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "true"
 app.config['SECRET_KEY'] = os.urandom(24)
 app.config["DISCORD_CLIENT_ID"] = 1308052771626422304    # Discord client ID.
 app.config["DISCORD_CLIENT_SECRET"] = "CklemdSKyKH2LnEPzPsM8qn2ZQRArBXu"                # Discord client secret.
