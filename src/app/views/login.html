@@ -61,6 +61,18 @@
             font-size: 14px;
             color: #ccc; /* 淺灰色 */
         }
+        #dc-btn {
+            background-color: rgb(0,0,255);
+            color: rgb(255,255,255);
+            font-size: 19px;
+			border: 2px solid #2d63c8;
+			padding: 20px 50px;
+			cursor: pointer
+        }
+        #dc-btn:hover {
+            color: #2d63c8;
+			background-color: #ffffff;
+        }
     </style>
 </head>
 <body>
@@ -69,6 +81,8 @@
         <form action="/auth/login" method="POST">
             <input type="text" name="auth_code" placeholder="輸入授權碼 auth-code" required>
             <button type="submit">登入</button>
+            <br>
+            <button id="dc-btn" onclick="window.location.href='/auth/dc'">Discord登入</button>
         </form>
         <div class="footer">
             <p>請聯繫職員取得授權碼</p>
