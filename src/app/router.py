@@ -1,11 +1,17 @@
 from blockchain import BlockSave
 from flask import Flask,render_template,request,abort,session,redirect,jsonify
 from hashlib import sha256
+from flask_discord import DiscordOAuth2Session, requires_authorization, Unauthorized
 import os,datetime
 
 app = Flask(__name__, template_folder="views")
+discord = DiscordOAuth2Session(app)
 
 app.config['SECRET_KEY'] = os.urandom(24)
+app.config["DISCORD_CLIENT_ID"] = 1308052771626422304    # Discord client ID.
+app.config["DISCORD_CLIENT_SECRET"] = "CklemdSKyKH2LnEPzPsM8qn2ZQRArBXu"                # Discord client secret.
+app.config["DISCORD_REDIRECT_URI"] = "https://bc.wtechhk.xyz/auth/discord"                 # URL to your callback endpoint.
+app.config["DISCORD_BOT_TOKEN"] = "MTMwODA1Mjc3MTYyNjQyMjMwNA.GiciK1.WdmZyu6yFntGAbG_8pcEFIQARLoKjJYcxRsvIk"
 
 users = []
 
@@ -13,11 +19,16 @@ users = []
 def index():
   if not session.get('user'):
     session['user'] = ""
+  if not session.get("dc"):
+    session["dc"] = "0"
   return render_template("index.html")
 
 @app.route("/logout")
 def auth_logout():
   session["user"] = None
+  if session["dc"] == "1":
+    discord.revoke()
+    session["dc"] = "0"
   return redirect("/auth/login")
 
 @app.route("/auth/login",methods=["GET","POST"])
@@ -35,6 +46,20 @@ def auth_login():
         session["user"] = str(user["username"])
         return redirect("/dash")
     return redirect("/auth/login")
+
+@app.route("/auth/dc")
+def login_with_dc():
+  return discord.create_session(scope=["identify"])
+
+@app.route("/auth/discord")
+@requires_authorization
+def login_discord_session():
+  if not discord.authorized:
+    return jsonify({"dc-status":False,"msg":"請登入discord"})
+  user = discord.fetch_user()
+  session["user"] = user.name
+  session["dc"] = "1"
+  return redirect("/dash")
 
 @app.route("/dash")
 def dash():
