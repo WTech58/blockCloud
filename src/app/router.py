@@ -5,13 +5,14 @@ from flask_discord import DiscordOAuth2Session, requires_authorization, Unauthor
 import os,datetime
 
 app = Flask(__name__, template_folder="views")
-discord = DiscordOAuth2Session(app)
 
 app.config['SECRET_KEY'] = os.urandom(24)
 app.config["DISCORD_CLIENT_ID"] = "1308052771626422304"    # Discord client ID.
 app.config["DISCORD_CLIENT_SECRET"] = "CklemdSKyKH2LnEPzPsM8qn2ZQRArBXu"                # Discord client secret.
 app.config["DISCORD_REDIRECT_URI"] = "https://bc.wtechhk.xyz/auth/discord"                 # URL to your callback endpoint.
-app.config["DISCORD_BOT_TOKEN"] = "MTMwODA1Mjc3MTYyNjQyMjMwNA.GiciK1.WdmZyu6yFntGAbG_8pcEFIQARLoKjJYcxRsvIk"
+app.config["DISCORD_BOT_TOKEN"] = os.environ.get("dcToken")
+
+discord = DiscordOAuth2Session(app)
 
 users = []
 
