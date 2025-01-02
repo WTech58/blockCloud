@@ -16,6 +16,10 @@ discord = DiscordOAuth2Session(app)
 
 users = []
 
+@app.errorhandler(Unauthorized)
+def redirect_unauthorized(e):
+    return redirect("/auth/login")
+
 @app.route("/")
 def index():
   if not session.get('user'):
@@ -54,6 +58,12 @@ def login_with_dc():
 
 @app.route("/auth/discord")
 def login_discord_session():
+  discord.callback()
+  return redirect("/auth/v1/discord")
+
+@app.route("/auth/v1/discord")
+@requires_authorization
+def auth_discord_session():
   if not discord.authorized:
     return jsonify({"dc-status":False,"msg":"請登入discord"})
   user = discord.fetch_user()
