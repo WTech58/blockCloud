@@ -120,6 +120,9 @@
                 if (paymentResult) {
                     alert('付款成功!');
                     paymentSuccessful = true;
+                    $('.loading').hide();
+                    $('#step2').removeClass('active').hide();
+                    $('#step3').show().addClass('active');
                     return paymentResult;
                 } else {
                     alert('付款失敗.');
