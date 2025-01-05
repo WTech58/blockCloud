@@ -22,6 +22,10 @@ def redirect_unauthorized(e):
     return redirect("/auth/login")
 
 @app.route("/")
+def ind():
+  return render_template("code.html")
+
+@app.route("/index")
 def index():
   if not session.get('user'):
     session['user'] = ""
@@ -78,7 +82,7 @@ def dash():
   if not u:
     session["user"] = ""
   if u is None or u == "":
-    return redirect("/")
+    return redirect("/index")
   bs = BlockSave("test").get_all()
   return render_template("dash.html",bs=bs,u=u)
 
