@@ -14,12 +14,12 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #eef2f3;
-            color: #333;
+            background-color: #000; /* 黑色背景 */
+            color: #fff; /* 白色文字 */
         }
         header {
             background: #007bff;
-            color: #fff;
+            color: #fff; /* 白色標題 */
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
@@ -44,32 +44,37 @@
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
-            background: #fff;
+            background: #222; /* 深灰色背景 */
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             animation: fadeIn 1s;
         }
         h1 {
             text-align: center;
             margin-bottom: 20px;
+            color: #fff; /* 白色標題 */
         }
         h2 {
-            color: #007bff;
+            color: #007bff; /* 藍色標題 */
             margin-bottom: 15px;
         }
-        .feature {
+        .slider {
             display: flex;
-            align-items: center;
-            background: #f8f9fa;
+            overflow-x: auto; /* 使容器可橫向滾動 */
+            scroll-snap-type: x mandatory; /* 強制滾動對齊 */
+            gap: 10px; /* 框之間的間距 */
+        }
+        .feature {
+            flex: 0 0 300px; /* 設置框的寬度 */
+            background: #e0e0e0; /* 淺灰色 */
             border: 1px solid #ddd;
             border-radius: 5px;
             padding: 10px;
-            margin: 10px 0;
+            scroll-snap-align: start; /* 對齊滾動 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
-        .feature img {
-            width: 40px;
-            height: 40px;
-            margin-right: 15px;
+        .feature p {
+            color: #28a745; /* 綠色文字 */
         }
         .btn-login {
             display: block;
@@ -97,6 +102,23 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        .typing {
+            border-right: 2px solid #28a745; /* 打字光標綠色 */
+            white-space: nowrap; /* 防止換行 */
+            overflow: hidden; /* 隱藏多餘的文字 */
+            display: inline-block; /* 使其為行內塊元素 */
+            animation: typing 12s steps(100, end), blink-caret 0.75s step-end infinite; /* 打字動畫 */
+            margin: 20px 0;
+            color: #28a745; /* 綠色文字 */
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #28a745; }
+        }
     </style>
 </head>
 <body>
@@ -111,45 +133,51 @@
 
 <div class="container" id="home">
     <h2>關於我們</h2>
-    <p>BlockCloud 提供免費的儲存空間，用戶可以不用付費就能儲存，而且很安全。</p>
+    <p style="color: #28a745;">BlockCloud 提供免費的儲存空間，用戶可以不用付費就能儲存，而且很安全。</p>
 
-    <!-- 以下為內容 -->
-    
-    <div class="feature">
-            <strong>安全儲存</strong>
+    <!-- 滑動框架 -->
+    <div class="slider">
+        <div class="feature">
+            <strong style="color: #28a745;">安全儲存</strong>
             <p>BlockCloud 提供安全的服務，並且不會查看用戶儲存的東西。</p>
         </div>
-    </div>
-    
-    <div class="feature">
-        <div>
-            <strong>98% 自動化</strong>
+        <div class="feature">
+            <strong style="color: #28a745;">98% 自動化</strong>
             <p>幫助您輕鬆完成你想處理的事。</p>
         </div>
-    </div>
-
-    <div class="feature">
-        <div>
-            <strong>區塊儲存</strong>
+        <div class="feature">
+            <strong style="color: #28a745;">區塊儲存</strong>
             <p>會使用區塊形式存於網絡。</p>
         </div>
     </div>
-    <br>
+
+    <div class="typing" id="typed-text">🌐 區塊雲BlockCloud - 您的免費去中心化儲存解決方案！想要安全、便捷的儲存空間嗎？區塊雲BlockCloud 提供開源的去中心化Locker，讓您無需付費即可享受高效的儲存服務。</div>
+
     <a href="/auth/login" class="btn-login">前往Panel</a>
 </div>
 
 <footer>
-    <p>&copy; 2024 區塊雲 版權所有.</p>
-    <p>Discord: https://discord.gg/bBGKJd7zEj</p>
+    <p>&copy; 2024 -> 2025 區塊雲 版權所有.</p>
+    <p>Discord: <a href="https://discord.gg/bBGKJd7zEj" style="color: #007bff;">https://discord.gg/bBGKJd7zEj</a></p>
 </footer>
-    
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
 <script>
-   
-</script>
+    const text = "🌐 區塊雲BlockCloud - 您的免費去中心化儲存解決方案！<br>想要安全、便捷的儲存空間嗎？ <br> 區塊雲BlockCloud 提供開源的去中心化Locker，<br>讓您無需付費即可享受高效的儲存服務。";
+    let index = 0;
+    const typedText = document.getElementById("typed-text");
 
+    function type() {
+        if (index < text.length) {
+            typedText.innerHTML += text.charAt(index);
+            index++;
+            setTimeout(type, 50); // 調整打字速度
+        }
+    }
+
+    type();
+</script>
 </body>
 </html>
