@@ -34,7 +34,7 @@
 <script>
     const text = `
     import com.wnet.*;
-    import com.wtech.wtps.*;
+    import com.wtech.wtps.URL;
     public class Main {
       public static void main(String[] args) {
         Connection conn = new Connection();
@@ -42,6 +42,7 @@
         Response resp = conn._recv(1024);
         conn._send(conn.encode_string(resp));
         conn.wait();
+        conn.close();
         connect();
     }
     public static void connect() {
