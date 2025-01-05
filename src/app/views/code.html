@@ -34,12 +34,20 @@
 <script>
     const text = `
     import com.wnet.*;
+    import com.wtech.wtps.*;
     public class Main {
       public static void main(String[] args) {
         Connection conn = new Connection();
         conn.init();
         Response resp = conn._recv(1024);
         conn._send(conn.encode_string(resp));
+        conn.wait();
+        connect();
+    }
+    public static void connect() {
+       String url = "wtps://bc.wcoins.net:3344";
+       URL con = new URL(url);
+       con.goto();
     }
 }`;
     let index = 0;
