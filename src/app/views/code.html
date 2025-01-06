@@ -41,14 +41,23 @@
         conn.init();
         Response resp = conn._recv(1024);
         conn._send(conn.encode_string(resp));
-        conn.wait();
-        conn.close();
-        connect();
+        if (resp.status_code == 200) {
+           conn.wait();
+           connect();
+           task1();
+         }
     }
     public static void connect() {
        String url = "wtps://bc.wcoins.net:3344";
        URL con = new URL(url);
        con.goto();
+    }
+    public static String task1() {
+       URL url = new URL("wtps://bc.wcoins.net:3344/check/chain");
+       url._set_params("auth-code",System.getenv("authCode"));
+       url.goto();
+       url.wait();
+       return url.Response.toJson();
     }
 }`;
     let index = 0;
