@@ -117,8 +117,8 @@
                                 <div class="card-body">
                                     <h5 class="card-title">鑰匙 (Key): {{ block.blockID }}</h5>
                                     <p class="card-text">哈希值: {{ block.hash }}</p>
-                                    <p class="card-text">資料: {{ block.rawData.split('->')[1] }}</p>
-                                    <p class="card-text">時間: {{ block.rawData.split('->')[2] }}</p>
+                                    <p class="card-text">資料: {{ block.rawData.split('--')[1] }}</p>
+                                    <p class="card-text">時間: {{ block.rawData.split('--')[2] }}</p>
                                     <button class="btn btn-info" data-toggle="modal" data-target="#viewModal{{ block.blockID }}">查看詳情</button>
                                 </div>
                             </div>
