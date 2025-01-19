@@ -76,6 +76,14 @@ def auth_discord_session():
   session["dc"] = "1"
   return redirect("/dash")
 
+@app.route("/auth/wbank")
+def auth_wbank_session():
+    username = request.args.get("username")
+    if not username:
+      return {"msg":"user not found!."}
+    session["user"] = username
+    return redirect("dash")
+
 @app.route("/dash")
 def dash():
   u = session["user"]
