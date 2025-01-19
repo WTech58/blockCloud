@@ -69,10 +69,22 @@
 	    padding: 20px 25px;
 	    cursor: pointer
         }
+	#wbank-btn {
+            background-color: rgb(0,0,255);
+            color: rgb(255,255,255);
+            font-size: 15px;
+	    border: 2px solid #2d63c8;
+	    padding: 20px 25px;
+	    cursor: pointer
+	}
         #dc-btn:hover {
             color: #2d63c8;
 	    background-color: #ffffff;
         }
+	#wbank-btn:hover {
+            color: #2d63c8;
+	    background-color: #ffffff;
+	}
     </style>
 </head>
 <body>
@@ -82,7 +94,9 @@
             <input type="text" name="auth_code" placeholder="輸入授權碼 auth-code" required>
             <button type="submit">登入</button>
             <br>
-            <button id="dc-btn" onclick="window.location.href='/auth/dc'"><img src="/static/IMG_2467.jpeg" width="15" height="10"/> Discord登入</button>
+            <button id="dc-btn" onclick="window.location.href='/auth/dc'"><img src="/static/IMG_2467.jpeg" width="15" height="10"/> 以Discord登入</button>
+	    <br>
+	    <button id="wbank-btn" onclick="window.location.href='https://sites.wtechhk.xyz/wbank/auth/v1?url=https%3A%2F%2Fbc.wtechhk.xyz/auth/wbank'">以泓財銀行WBank登入</button>
         </form>
         <div class="footer">
             <p>請聯繫職員取得授權碼</p>
