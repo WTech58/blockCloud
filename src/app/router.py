@@ -82,7 +82,7 @@ def auth_wbank_session():
     if not username:
       return {"msg":"user not found!."}
     session["user"] = username
-    return redirect("dash")
+    return redirect("/dash")
 
 @app.route("/dash")
 def dash():
