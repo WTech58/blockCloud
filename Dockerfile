@@ -1,9 +1,4 @@
-FROM ubuntu:latest
+FROM python:3
 
-RUN apt-get update && apt-get install git -y
-
-RUN git clone https://github.com/WTech58/blockCloud.git 
-RUN cd src/install && \
-    chmod +x ./blockcloud && \
-    ./blockcloud init
+RUN pip install flask flask_discord
 RUN python src/start.py
